@@ -73,8 +73,11 @@ vim.opt.guicursor = ""
 vim.opt.termguicolors = true
 
 -- disable netrw at the very start of your init.lua
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
+-- vim.g.loaded_netrw = 1
+-- vim.g.loaded_netrwPlugin = 1
+vim.g.netrw_browse_split = 0
+vim.g.netrw_banner = 0
+vim.g.netrw_winsize = 25
 
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
@@ -123,8 +126,6 @@ vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous [D]
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next [D]iagnostic message" })
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror messages" })
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
-
-vim.keymap.set("n", "<leader>fe", ":Neotree toggle<CR>")
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
@@ -265,16 +266,6 @@ require("lazy").setup({
 	--
 	-- Use the `dependencies` key to specify the dependencies of a particular plugin
 
-	{
-		"nvim-neo-tree/neo-tree.nvim",
-		branch = "v3.x",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
-			"MunifTanjim/nui.nvim",
-			-- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
-		},
-	},
 	{ -- Fuzzy Finder (files, lsp, etc)
 		"nvim-telescope/telescope.nvim",
 		event = "VimEnter",
@@ -356,7 +347,7 @@ require("lazy").setup({
 			vim.keymap.set("n", "<leader><leader>", builtin.buffers, { desc = "[ ] Find existing buffers" })
 
 			local colorscheme = require("colorscheme")
-vim.cmd.colorscheme("tokyonight-night")
+			vim.cmd.colorscheme("tokyonight-day")
 
 			vim.keymap.set("n", "<leader>th", colorscheme.switch_colorscheme, { desc = "colorscheme" })
 
@@ -772,29 +763,23 @@ vim.cmd.colorscheme("tokyonight-night")
 		--
 		-- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
 		"folke/tokyonight.nvim",
-		-- priority = 1000, -- Make sure to load this before all the other start plugins.
-		-- init = function()
-		-- 	-- Load the colorscheme here.
-		-- 	-- Like many other themes, this one has different styles, and you could load
-		-- 	-- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-		-- vim.cmd("colorscheme tokyonight-day")
-		--
-		-- 	-- You can configure highlights by doing something like:
-		-- 	-- 	vim.cmd.hi("Comment gui=none")
-		-- end,
-	},
-	{
-		"bluz71/vim-moonfly-colors",
 		priority = 1000, -- Make sure to load this before all the other start plugins.
 		init = function()
-			-- vim.cmd("colorscheme tokyonight-day")
+			-- Load the colorscheme here.
+			-- Like many other themes, this one has different styles, and you could load
+			-- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
+			vim.cmd("colorscheme tokyonight-day")
+
+			-- You can configure highlights by doing something like:
+			-- 	vim.cmd.hi("Comment gui=none")
 		end,
 	},
-
+	{ "rmehri01/onenord.nvim" },
+	{ "projekt0n/github-nvim-theme" },
 	{
-		"dayrebelot/kanagawa.nvim",
+		"bluz71/vim-moonfly-colors",
 	},
-
+	{ "catppuccin/nvim", name = "catppuccin" },
 	-- Highlight todo, notes, etc in comments
 	{
 		"folke/todo-comments.nvim",
@@ -897,12 +882,12 @@ vim.cmd.colorscheme("tokyonight-night")
 	--  Here are some example plugins that I've included in the Kickstart repository.
 	--  Uncomment any of the lines below to enable them (you will need to restart nvim).
 	--
-	require("kickstart.plugins.debug"),
+	-- require("kickstart.plugins.debug"),
 	-- require 'kickstart.plugins.indent_line',
 	-- require 'kickstart.plugins.lint',
 	-- require 'kickstart.plugins.autopairs',
-	-- require 'kickstart.plugins.neo-tree',
-	require("kickstart.plugins.gitsigns"), -- adds gitsigns recommend keymaps
+	-- require("kickstart.plugins.neo-tree"),
+	-- require("kickstart.plugins.gitsigns"), -- adds gitsigns recommend keymaps
 
 	-- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
 	--    This is the easiest way to modularize your config.
