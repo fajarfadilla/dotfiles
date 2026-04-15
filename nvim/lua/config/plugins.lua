@@ -198,6 +198,7 @@ require("snacks").setup({
     scroll = { enabled = true },
     statuscolumn = { enabled = true },
     words = { enabled = true },
+    git = { enabled = true },
 })
 
 vim.api.nvim_create_autocmd("VimEnter", {
@@ -328,7 +329,6 @@ local   keymaps = {
     { "<leader>S",  function() Snacks.scratch.select() end, desc = "Select Scratch Buffer" },
     { "<leader>cR", function() Snacks.rename.rename_file() end, desc = "Rename File" },
     { "<leader>gB", function() Snacks.gitbrowse() end, desc = "Git Browse", mode = { "n", "v" } },
-    { "<leader>gg", function() Snacks.lazygit() end, desc = "Lazygit" },
     { "<leader>un", function() Snacks.notifier.hide() end, desc = "Dismiss All Notifications" },
     { "]]",         function() Snacks.words.jump(vim.v.count1) end, desc = "Next Reference", mode = { "n", "t" } },
     { "[[",         function() Snacks.words.jump(-vim.v.count1) end, desc = "Prev Reference", mode = { "n", "t" } },
@@ -455,4 +455,5 @@ end
 vim.cmd.colorscheme('vague')
 
 vim.keymap.set("n", "<leader>pc", pack_clean)
+vim.keymap.set("n", "<leader>gg", "<CMD>Neogit<CR>")
 vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })

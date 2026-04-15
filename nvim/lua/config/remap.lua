@@ -58,3 +58,6 @@ vim.keymap.set(
 )
 
 vim.keymap.set("n", "<leader>gg", "<cmd>Neogit<cr>", { desc = "Open Neogit UI" })
+
+vim.keymap.set("n", "<leader>x", "<cmd>split<cr>", { desc = "split" })
+vim.keymap.set("n", "<leader>\\", "<cmd>vsplit<cr>", { desc = "vertical split" })
