@@ -7,7 +7,6 @@ vim.opt.wrap = false
 vim.opt.scrolloff = 8
 vim.opt.sidescrolloff = 8
 vim.opt.laststatus = 3
-vim.opt.winborder = "rounded"
 
 -- indentation
 vim.opt.tabstop = 4

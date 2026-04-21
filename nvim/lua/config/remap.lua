@@ -57,7 +57,5 @@ vim.keymap.set(
     "oif err != nil {<CR>}<Esc>O.logger.Error(\"error\", \"error\", err)<Esc>F.;i"
 )
 
+vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 vim.keymap.set("n", "<leader>gg", "<cmd>Neogit<cr>", { desc = "Open Neogit UI" })
-
-vim.keymap.set("n", "<leader>x", "<cmd>split<cr>", { desc = "split" })
-vim.keymap.set("n", "<leader>\\", "<cmd>vsplit<cr>", { desc = "vertical split" })
