@@ -1,10 +1,6 @@
-vim.pack.add({
-    "https://github.com/stevearc/oil.nvim"
-})
+vim.pack.add({'https://github.com/stevearc/oil.nvim'})
 
-local oil = require("oil")
-
-oil.setup({
+require("oil").setup({
   -- Oil will take over directory buffers (e.g. `vim .` or `:e src/`)
   -- Set to false if you want some other plugin (e.g. netrw) to open when you edit directories.
   default_file_explorer = true,
@@ -208,3 +204,5 @@ oil.setup({
     border = nil,
   },
 })
+
+vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
